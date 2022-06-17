@@ -1,0 +1,24 @@
+C:\Users\danie\source\repos\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.deps.json
+C:\Users\danie\source\repos\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.dll
+C:\Users\danie\source\repos\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.pdb
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.csproj.AssemblyReference.cache
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.AssemblyInfoInputs.cache
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.AssemblyInfo.cs
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.csproj.CoreCompileInputs.cache
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.dll
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\refint\IES9012.Core.dll
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.pdb
+C:\Users\danie\source\repos\IES9012\IES9012.Core\obj\Debug\net6.0\ref\IES9012.Core.dll
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.csproj.AssemblyReference.cache
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.AssemblyInfoInputs.cache
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.AssemblyInfo.cs
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.csproj.CoreCompileInputs.cache
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.dll
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\refint\IES9012.Core.dll
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\IES9012.Core.pdb
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.deps.json
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.dll
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\bin\Debug\net6.0\IES9012.Core.pdb
+C:\Users\danie\OneDrive\Escritorio\Escuela2022\Programacion II\visualstudiocode\IES9012\IES9012.Core\obj\Debug\net6.0\ref\IES9012.Core.dll

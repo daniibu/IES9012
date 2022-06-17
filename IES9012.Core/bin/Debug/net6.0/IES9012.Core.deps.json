@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "IES9012.Core/1.0.0": {
+        "runtime": {
+          "IES9012.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IES9012.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

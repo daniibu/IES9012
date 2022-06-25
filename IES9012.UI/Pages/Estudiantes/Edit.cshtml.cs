@@ -1,77 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IES9012.Core.Modelos;
+using IES9012.UI.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using IES9012.Core.Modelos;
-using IES9012.UI.Data;
 
 namespace IES9012.UI.Pages.Estudiantes
 {
     public class EditModel : PageModel
     {
-        private readonly IES9012.UI.Data.IES9012Context _context;
+        private readonly IES9012Context _context;
 
-        public EditModel(IES9012.UI.Data.IES9012Context context)
+        public EditModel(IES9012Context context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Estudiante Estudiantes { get; set; } = default!;
+        public Estudiante? Estudiante { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var estudiantes =  await _context.Estudiantes.FirstOrDefaultAsync(m => m.EstudianteId == id);
-            if (estudiantes == null)
+            Estudiante = await _context.Estudiantes.FindAsync(id);
+            if (Estudiante == null)
             {
                 return NotFound();
             }
-            Estudiantes = estudiantes;
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            var estudianteToUpdate = await _context.Estudiantes.FindAsync(id);
+            if (estudianteToUpdate == null)
             {
-                return Page();
+                return NotFound();
             }
-
-            _context.Attach(Estudiantes).State = EntityState.Modified;
-
-            try
+            if (await TryUpdateModelAsync<Estudiante>(
+            estudianteToUpdate,
+                "estudiante",
+                s => s.Nombre, s => s.Apellido, s => s.FechaInscripcion))
             {
                 await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EstudiantesExists(Estudiantes.EstudianteId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
+            return Page();
         }
 
-        private bool EstudiantesExists(int id)
-        {
-          return (_context.Estudiantes?.Any(e => e.EstudianteId == id)).GetValueOrDefault();
-        }
     }
 }

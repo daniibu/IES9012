@@ -22,7 +22,7 @@ namespace IES9012.Core.Modelos
 
         
         //
-        [DisplayFormat(DataFormatString = "0:dd/mm/yyyy", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = false)]
         [Display(Name ="Fecha de Inscripción")]//decorador: cambia la propiedad con la que voy a visualizar el campo
         public DateTime FechaInscripcion { get; set; } = DateTime.Now;//para la fecha actual, la fecha del sistema
 
@@ -37,6 +37,7 @@ namespace IES9012.Core.Modelos
         //una conexion es tu tipo de dato que va a tener en su interrior otro tipo de dato
         //voy a tener una lista de un par de datos IDAlumnos,IDMateria y así sigue
         //lo pongo null por las dudas que hay un alumno que no este cursando ninguna materia
-            
+        
+
     }
 }

@@ -19,7 +19,7 @@ namespace IES9012.UI.Pages.Estudiantes
             _context = context;
         }
 
-        public IList<Estudiante> Estudiantes { get;set; } = default!;
+        public IList<Estudiante> Estudiantes { get; set; } = default!;
 
         public async Task OnGetAsync()
         {

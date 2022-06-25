@@ -1,63 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IES9012.Core.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using IES9012.Core.Modelos;
-using IES9012.UI.Data;
-
 namespace IES9012.UI.Pages.Estudiantes
 {
     public class DeleteModel : PageModel
     {
         private readonly IES9012.UI.Data.IES9012Context _context;
-
-        public DeleteModel(IES9012.UI.Data.IES9012Context context)
+        private readonly ILogger<DeleteModel> _logger;
+        public DeleteModel(IES9012.UI.Data.IES9012Context context, ILogger<DeleteModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
-
         [BindProperty]
-      public Estudiante Estudiantes { get; set; } = default!;
+        public Estudiante Estudiante { get; set; }
+        public string ErrorMessage { get; set; }
+        public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
 
-        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null)
             {
                 return NotFound();
             }
-
-            var estudiantes = await _context.Estudiantes.FirstOrDefaultAsync(m => m.EstudianteId == id);
-
-            if (estudiantes == null)
+            Estudiante = await _context.Estudiantes
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.EstudianteId == id);
+            if (Estudiante == null)
             {
                 return NotFound();
             }
-            else 
+            if (saveChangesError.GetValueOrDefault())
             {
-                Estudiantes = estudiantes;
+                ErrorMessage = String.Format("Delete {ID} failed. Try again", id);
             }
             return Page();
         }
-
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var estudiantes = await _context.Estudiantes.FindAsync(id);
-
-            if (estudiantes != null)
+            var estudiante = await _context.Estudiantes.FindAsync(id);
+            if (estudiante == null)
             {
-                Estudiantes = estudiantes;
-                _context.Estudiantes.Remove(Estudiantes);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-
-            return RedirectToPage("./Index");
+            try
+            {
+                _context.Estudiantes.Remove(estudiante);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, ErrorMessage);
+                return RedirectToAction("./Delete", new { id, saveChangesError = true });
+            }
         }
     }
 }

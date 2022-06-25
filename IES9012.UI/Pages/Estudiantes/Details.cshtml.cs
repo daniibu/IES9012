@@ -12,30 +12,35 @@ namespace IES9012.UI.Pages.Estudiantes
 {
     public class DetailsModel : PageModel
     {
-        private readonly IES9012.UI.Data.IES9012Context _context;
+        private readonly IES9012Context _context;
 
-        public DetailsModel(IES9012.UI.Data.IES9012Context context)
+        public DetailsModel(IES9012Context context)
         {
             _context = context;
         }
 
-      public Estudiante Estudiantes { get; set; } = default!; 
+        public Estudiante? Estudiante { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Estudiantes == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var estudiantes = await _context.Estudiantes.FirstOrDefaultAsync(m => m.EstudianteId == id);
-            if (estudiantes == null)
+            Estudiante = await _context.Estudiantes
+                        .Include(s => s.Inscripciones)
+                        .ThenInclude(e => e.Materia)
+                       //Los métodos Include y ThenInclude hacen que el contexto cargue la propiedad de
+                        //navegación Estudiante.Inscripciones y, dentro de cada inscripción, la propiedad de
+                        //navegación Inscripcion.Materia.
+                        .AsNoTracking()
+                        //El método AsNoTracking mejora el rendimiento en casos en los que las entidades
+                        //devueltas no se actualizan en el contexto actual.
+                        .FirstOrDefaultAsync(m => m.EstudianteId == id);
+            if (Estudiante == null)
             {
                 return NotFound();
-            }
-            else 
-            {
-                Estudiantes = estudiantes;
             }
             return Page();
         }

@@ -25,21 +25,23 @@ namespace IES9012.UI.Pages.Estudiantes
         }
 
         [BindProperty]
-        public Estudiante Estudiantes { get; set; } = default!;
-        
+        public Estudiante? Estudiante { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Estudiantes == null || Estudiantes == null)
+            var emptyStudient = new Estudiante();
+            if (await TryUpdateModelAsync<Estudiante>(
+            emptyStudient,
+            "estudiante", //Prefijo para el valor del formulario.
+            s => s.Nombre, s => s.Apellido, s => s.FechaInscripcion))
             {
-                return Page();
+                _context.Estudiantes.Add(emptyStudient);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
             }
-
-            _context.Estudiantes.Add(Estudiantes);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
+            return Page();
         }
     }
 }

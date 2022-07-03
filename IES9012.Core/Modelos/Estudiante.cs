@@ -22,8 +22,10 @@ namespace IES9012.Core.Modelos
 
         
         //
-        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         [Display(Name ="Fecha de Inscripción")]//decorador: cambia la propiedad con la que voy a visualizar el campo
+        //MM(eme MAYUSCULA)=mes
+        //mm(eme minuscula)=minuto
         public DateTime FechaInscripcion { get; set; } = DateTime.Now;//para la fecha actual, la fecha del sistema
 
         //agregamos la propiedad inscripciones, que se va a relacionar con la tabla inscripciones

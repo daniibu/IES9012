@@ -2,14 +2,25 @@
 @model IES9012.UI.Pages.Estudiantes.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Estudiantes";
 }
 
-<h1>Index</h1>
+<h1>Estudiantes</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Crear Nuevo</a>
 </p>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="cadenaFiltro"
+                value="@Model.FiltroActual" />
+            <input type="submit" value="Buscar" class="btn btn-primary" /> |
+            <a asp-page="./Index">Retornar a la lista</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -17,10 +28,14 @@
                 @Html.DisplayNameFor(model => model.Estudiantes[0].Nombre)
             </th>
             <th>
+                <a asp-page="./Index" asp-route-clasificarOrden="@Model.OrdenNombre" asp-route-filtroActual="@Model.FiltroActual">
                 @Html.DisplayNameFor(model => model.Estudiantes[0].Apellido)
+                </a>
             </th>
             <th>
+                <a asp-page="./Index" asp-route-clasificarOrden="@Model.OrdenFecha" asp-route-filtroActual="@Model.FiltroActual">
                 @Html.DisplayNameFor(model => model.Estudiantes[0].FechaInscripcion)
+                </a>
             </th>
             <th></th>
         </tr>
@@ -46,3 +61,21 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.Estudiantes.TienePaginaAnterior ? "disabled" : "";
+    var nextDisabled = !Model.Estudiantes.TienePaginaSiguiente ? "disabled" : "";
+}
+<a asp-page="./Index"
+    asp-route-clasificarOrden="@Model.OrdenActual"
+    asp-route-indicePagina="@(Model.Estudiantes.PageIndex - 1)"
+    asp-route-filtroActual="@Model.FiltroActual"
+    class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+    asp-route-clasificarOrden="@Model.OrdenActual"
+    asp-route-indicePagina="@(Model.Estudiantes.PageIndex + 1)"
+    asp-route-filtroActual="@Model.FiltroActual"
+    class="btn btn-primary @nextDisabled">
+    Next
+</a>
